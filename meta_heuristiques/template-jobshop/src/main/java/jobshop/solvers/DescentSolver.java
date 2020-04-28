@@ -97,13 +97,13 @@ public class DescentSolver implements Solver {
 
         //on créé un schedule qui va etre comparé a l'init
         Schedule aux = null;
+	//on cree le critical path
+        //List<Task> LT = init.criticalPath();
 
         //boolean pour savoir si on a fini
         boolean trouve = false;
 
         while (!trouve && (deadline - System.currentTimeMillis() > 1)){
-            //on cree le critical path
-            List<Task> LT = init.criticalPath();
 
             //on cree la liste des blocks
             List<Block> LB = blocksOfCriticalPath(Ro);
@@ -125,20 +125,21 @@ public class DescentSolver implements Solver {
 
                 //pour tous les swap trouvés, on trouve celui qui a le makespan minimal
                 for (int b = 0; b < LS.size(); b++) {
-                    LS.get(b).applyOn(Ro);
-                    aux = Ro.toSchedule();
+		    ResourceOrder auxi = Ro.copy();
+                    LS.get(b).applyOn(auxi);
+                    aux = auxi.toSchedule();
                     if (aux.makespan() < min) {
                         min = aux.makespan();
                         swap = LS.get(b);
                     }
                 }
-
-                swap.applyOn(Ro);
-                ResourceOrder copy = Ro.copy();
+		
+		ResourceOrder copy = Ro.copy();
+                swap.applyOn(copy);
+               
                 aux = copy.toSchedule();
-                if (aux.makespan() < init.makespan()) {
+                if (aux.makespan() > init.makespan()) {
                     trouve = true;
-                    init=aux;
                 } else {
                     Ro=copy;
                     init=aux;
