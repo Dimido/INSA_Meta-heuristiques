@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="1feefc4d-384e-4b81-9f5b-5df1f750b881" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/src/main/java/jobshop/DebuggingMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jobshop/DebuggingMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/jobshop/Instance.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jobshop/Instance.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/jobshop/encodings/ResourceOrder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jobshop/encodings/ResourceOrder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/jobshop/solvers/DescentSolver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jobshop/solvers/DescentSolver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/jobshop/solvers/TabooSolver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jobshop/solvers/TabooSolver.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1ZfWGngqfVNlVPo940VfdlbIKWs" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/build.gradle" />
+    <property name="show.unlinked.gradle.project.popup" value="true" />
+  </component>
+  <component name="RunManager" selected="Application.DebuggingMain">
+    <configuration name="DebuggingMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="jobshop.DebuggingMain" />
+      <module name="JSP.main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="jobshop.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="jobshop.Main" />
+      <module name="JSP.main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="jobshop.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.DebuggingMain" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="1feefc4d-384e-4b81-9f5b-5df1f750b881" name="Default Changelist" comment="" />
+      <created>1585230539955</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1585230539955</updated>
+      <workItem from="1585230589219" duration="15442000" />
+      <workItem from="1585643926951" duration="143000" />
+      <workItem from="1585808488704" duration="12938000" />
+      <workItem from="1586954432702" duration="391000" />
+      <workItem from="1586956221213" duration="12246000" />
+      <workItem from="1587484340520" duration="22676000" />
+      <workItem from="1587970462929" duration="1616000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="171" y="54" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1585231364155">
+      <screen x="61" y="27" width="1305" height="741" />
+    </state>
+    <state x="171" y="54" key="#com.intellij.execution.impl.EditConfigurationsDialog/61.27.1305.741@61.27.1305.741" timestamp="1585231364155" />
+    <state width="1259" height="175" key="GridCell.Tab.0.bottom" timestamp="1587656331703">
+      <screen x="61" y="27" width="1305" height="741" />
+    </state>
+    <state width="1259" height="175" key="GridCell.Tab.0.bottom/61.27.1305.741@61.27.1305.741" timestamp="1587656331703" />
+    <state width="1259" height="175" key="GridCell.Tab.0.center" timestamp="1587656331701">
+      <screen x="61" y="27" width="1305" height="741" />
+    </state>
+    <state width="1259" height="175" key="GridCell.Tab.0.center/61.27.1305.741@61.27.1305.741" timestamp="1587656331701" />
+    <state width="1259" height="175" key="GridCell.Tab.0.left" timestamp="1587656331700">
+      <screen x="61" y="27" width="1305" height="741" />
+    </state>
+    <state width="1259" height="175" key="GridCell.Tab.0.left/61.27.1305.741@61.27.1305.741" timestamp="1587656331700" />
+    <state width="1259" height="175" key="GridCell.Tab.0.right" timestamp="1587656331702">
+      <screen x="61" y="27" width="1305" height="741" />
+    </state>
+    <state width="1259" height="175" key="GridCell.Tab.0.right/61.27.1305.741@61.27.1305.741" timestamp="1587656331702" />
+    <state x="369" y="224" key="com.intellij.ide.util.TipDialog" timestamp="1587970565932">
+      <screen x="61" y="27" width="1305" height="741" />
+    </state>
+    <state x="369" y="224" key="com.intellij.ide.util.TipDialog/61.27.1305.741@61.27.1305.741" timestamp="1587970565932" />
+    <state x="377" y="175" key="run.anything.popup" timestamp="1586964856706">
+      <screen x="61" y="27" width="1305" height="741" />
+    </state>
+    <state x="377" y="175" key="run.anything.popup/61.27.1305.741@61.27.1305.741" timestamp="1586964856706" />
+  </component>
+</project>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="jobshop.encodings.EncodingTests" tests="2" skipped="0" failures="0" errors="0" timestamp="2020-04-27T09:52:15" hostname="dimido" time="0.134">
+  <properties/>
+  <testcase name="testBasicSolver" classname="jobshop.encodings.EncodingTests" time="0.069"/>
+  <testcase name="testJobNumbers" classname="jobshop.encodings.EncodingTests" time="0.056"/>
+  <system-out><![CDATA[start time for job 0,0 is :0
+start time for job 0,1 is :3
+start time for job 0,2 is :6
+start time for job 1,0 is :0
+start time for job 1,1 is :3
+start time for job 1,2 is :8
+
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
