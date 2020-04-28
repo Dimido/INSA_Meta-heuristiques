@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1feefc4d-384e-4b81-9f5b-5df1f750b881" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/jobshop/DebuggingMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jobshop/DebuggingMain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/jobshop/Instance.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jobshop/Instance.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/jobshop/encodings/ResourceOrder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jobshop/encodings/ResourceOrder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/jobshop/solvers/DescentSolver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jobshop/solvers/DescentSolver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/jobshop/solvers/TabooSolver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jobshop/solvers/TabooSolver.java" afterDir="false" />
-    </list>
+    <list default="true" id="1feefc4d-384e-4b81-9f5b-5df1f750b881" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -26,9 +20,10 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
   <component name="ProjectId" id="1ZfWGngqfVNlVPo940VfdlbIKWs" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -38,7 +33,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/build.gradle" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
     <property name="show.unlinked.gradle.project.popup" value="true" />
   </component>
   <component name="RunManager" selected="Application.DebuggingMain">
@@ -92,6 +87,7 @@
       <workItem from="1586956221213" duration="12246000" />
       <workItem from="1587484340520" duration="22676000" />
       <workItem from="1587970462929" duration="1616000" />
+      <workItem from="1588064924618" duration="190000" />
     </task>
     <servers />
   </component>
@@ -103,6 +99,10 @@
       <screen x="61" y="27" width="1305" height="741" />
     </state>
     <state x="171" y="54" key="#com.intellij.execution.impl.EditConfigurationsDialog/61.27.1305.741@61.27.1305.741" timestamp="1585231364155" />
+    <state x="496" y="154" width="424" height="484" key="FileChooserDialogImpl" timestamp="1588065114520">
+      <screen x="61" y="27" width="1305" height="741" />
+    </state>
+    <state x="496" y="154" width="424" height="484" key="FileChooserDialogImpl/61.27.1305.741@61.27.1305.741" timestamp="1588065114520" />
     <state width="1259" height="175" key="GridCell.Tab.0.bottom" timestamp="1587656331703">
       <screen x="61" y="27" width="1305" height="741" />
     </state>

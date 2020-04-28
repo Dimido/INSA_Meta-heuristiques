@@ -118,7 +118,7 @@ public class DescentSolver implements Solver {
                 List<Swap> LS = new ArrayList<Swap>();
 
                 for (int a = 0; a < LB.size(); a++) {
-                    LS.addAll(neighbors(LB.get(a)));
+                    LS.addAll(neighbors2(LB.get(a)));
                 }
                 //pour stocker le swap
                 Swap swap = null;
@@ -207,7 +207,7 @@ public class DescentSolver implements Solver {
             listeS.add(new Swap(m,i,i+1));
             i+=2;
         }
-
+	
         //part two -> swap with an offset of 1
         i=1;
         while (i<nb-1){
@@ -217,6 +217,23 @@ public class DescentSolver implements Solver {
 
         return listeS;
         //throw new UnsupportedOperationException();
+    }
+
+    List<Swap> neighbors2(Block block) {
+        //on créé la liste de swaps à retourner
+        List<Swap> listeS = new ArrayList<Swap>();
+        //on récup le nb de taches
+        int nb = block.lastTask-block.firstTask;
+        //on recup la machine
+        int m=block.machine;
+
+	
+        listeS.add(new Swap(m, block.firstTask, block.firstTask+1));
+	if (nb>2){
+	    listeS.add(new Swap(m,block.lastTask-1,block.lastTask));
+	}
+
+        return listeS;
     }
 
 }

@@ -24,9 +24,13 @@ public class Main {
         solvers.put("basic", new BasicSolver());
         solvers.put("random", new RandomSolver());
         solvers.put("descent", new DescentSolver());
-        solvers.put("SPTgreedy", new SPTGreedySolver());
-        solvers.put("LRPTgreedy", new LRPTGreedySolver());
+        solvers.put("SPTro", new SPTGreedySolver());
+        solvers.put("SPTjn", new SPTgreedySolver());
+        solvers.put("SRMT", new SRMTGreedySolver());
+        solvers.put("LRPTjn", new LRPTGreedySolver());
+        solvers.put("LRPTro", new LRPTgreedySolver());
         solvers.put("taboo", new TabooSolver());
+
         // add new solvers here
     }
 
