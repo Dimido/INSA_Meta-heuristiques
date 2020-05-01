@@ -29,7 +29,10 @@ public class Main {
         solvers.put("SRMT", new SRMTGreedySolver());
         solvers.put("LRPTjn", new LRPTGreedySolver());
         solvers.put("LRPTro", new LRPTgreedySolver());
+        solvers.put("ESTLRPT", new EST_LRPTGreedySolver());
+        solvers.put("ESTSPT", new EST_SPTGreedySolver());
         solvers.put("taboo", new TabooSolver());
+        solvers.put("recuit", new RecuitSimule());
 
         // add new solvers here
     }

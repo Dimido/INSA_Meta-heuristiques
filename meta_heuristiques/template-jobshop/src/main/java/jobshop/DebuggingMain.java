@@ -39,12 +39,15 @@ public class DebuggingMain {
             System.out.println("\nENCODING: " + enc);
 
             Schedule sched = enc.toSchedule();
+            ResourceOrder order = new ResourceOrder(sched);
+            System.out.println("order = "+order);
+            //System.out.println(DescentSolver.blocksOfCriticalPath(order).toString());
             // TODO: make it print something meaningful
             // by implementing the toString() method
-            sched.toString();
+            /*sched.toString();
             System.out.println("noww with ro:");
             Schedule s= ro.toSchedule();
-            s.toString();
+            s.toString();*/
 
             //ResourceOrder ro1 = null;
             //ro1=ro1.fromSchedule(s);
