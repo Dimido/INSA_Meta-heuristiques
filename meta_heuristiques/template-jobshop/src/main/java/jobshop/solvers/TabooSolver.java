@@ -84,143 +84,174 @@ public class TabooSolver implements Solver{
 
     @Override
     public Result solve(Instance instance, long deadline) {
-        //situation initiale
         //on recup le schedule
-        Solver sol = new RandomSolver();
+        Solver sol = new EST_LRPTGreedySolver();
         Result res = sol.solve(instance, deadline);
-        Schedule init = res.schedule;
-        ResourceOrder Ro = new ResourceOrder(init);
-        int makespan = init.makespan();
-
-        Schedule aux = null;
-
-        //on cree le critical path
-        List<Task> LT = init.criticalPath();
-
+        List<Task> cp = res.schedule.criticalPath();
+        
+        //max iter
+        int maxIter = 100;
+        //choix de la duree taboue
+        int durreeTaboue = 20;
+        //meilleur temps
+        int m= res.schedule.makespan();
+        System.out.println("au début le best vaut :" + m);
+        //resourceorder pour les évaluations
+        ResourceOrder travail = new ResourceOrder(res.schedule);
+        //resourceorder de sauvegarde
+        ResourceOrder init = travail.copy();
+        //solution meilleure
+        ResourceOrder best = travail.copy();
         //on cree la liste des blocks
-        List<DescentSolver.Block> LB = blocksOfCriticalPath(Ro);
+        List<Block> LB = blocksOfCriticalPath4(travail);
+        //tabeau des tabous
+        int[][] sTabou= new int[cp.size()][cp.size()];
+        //System.out.println("stabou size "+ sTabou.length);
+        //pour trouver le meilleur voisin
+        int min;
+        //iteration integer
+        int k = 0;
+        
 
-        if (LB.size()==0){
-            return new Result(instance, init, Result.ExitCause.Blocked);
-        } else {
+        
 
-            //valeur de maxIter arbitraire
-            int maxIter = 10;
-
-            //boucle
-            int k = 0;
-
-            while (k < maxIter) {
-                k+=1;
-                //on cherche le makespan minimal
-                int min = 9999;
-
-                //liste des swap possibles pour le schedule
-                List<DescentSolver.Swap> LS = new ArrayList<DescentSolver.Swap>();
-
-                for (int a = 0; a < LB.size(); a++) {
-                    LS.addAll(neighbors(LB.get(a)));
-                }
-                //pour stocker le swap
-                DescentSolver.Swap swap = null;
-
-                //pour tous les swap trouvés, on trouve celui qui a le makespan minimal
-                for(int b=0;b<LS.size();b++){
-                    LS.get(b).applyOn(Ro);
-                    aux=Ro.toSchedule();
-                    if(aux.makespan()<min){
-                        min = aux.makespan();
-                        swap=LS.get(b);
+        while ( (k<maxIter) /*&& (deadline - System.currentTimeMillis() > 1)*/){
+            k++;
+            //System.out.println("taille de lb : " +LB.size());
+            Swap current=null;
+            for (Block b : LB){
+                //System.out.println("taille de b : " +(b.lastTask - b.firstTask));
+                List<Swap> LS = neighbors3(b);
+                for (int j=0;j<sTabou.length;j++){
+                    for (int i=0;i<sTabou[j].length;i++){
+                        sTabou[j][i]=0;                    
                     }
                 }
-
-                swap.applyOn(Ro);
-                aux=Ro.toSchedule();
-                if (aux.makespan()<init.makespan()){
-                    init = aux;
-                    //on update les listes de blocks et de swap
-                    LT = init.criticalPath();
-                    //update les blocks
-                    LB = blocksOfCriticalPath(Ro);
-
-                    if (LB.size()==0){
-                        return new Result(instance, init, Result.ExitCause.Blocked);
+                //System.out.println("taille de ls : " +LS.size());
+                min = 9999;
+                for (Swap s:LS){
+                    //recup les indices des taches i1 et i2
+                    int i1=0, i2=0;
+                    Task t1=travail.matrix[s.machine][s.t1];
+                    Task t2=travail.matrix[s.machine][s.t2];
+                    for (int t=0;t<cp.size();t++){
+                        if (cp.get(t).job==t1.job && cp.get(t).task==t1.task){
+                            i1=t;
+                        }
+                        if (cp.get(t).job==t2.job && cp.get(t).task==t2.task){
+                            i2=t;
+                        }
+                    }
+                    for (int j=0;j<sTabou.length;j++){
+                        for (int i=0;i<sTabou[j].length;i++){
+                            System.out.println("tabou des indices " +j + ","+ i + " = " + sTabou[j][i]);                  
+                        }
+                    }
+                    if (sTabou[i2][i1]<=k){
+                        ResourceOrder aux = travail.copy();
+                        //System.out.println("copie de rsourceorder done");
+                        s.applyOn(aux);
+                        if (aux.toSchedule().makespan()<min){
+                            min = aux.toSchedule().makespan();
+                            current = s;
+                        }
                     }
                 }
             }
-        }
-
-        return new Result(instance, init, Result.ExitCause.Blocked);
+            ResourceOrder last = travail.copy();
+            current.applyOn(last);
+            m = last.toSchedule().makespan();
+            System.out.println("le best vaut :" + m);
+            //recup indices
+            int i1=0, i2=0;
+            Task t1=travail.matrix[current.machine][current.t1];
+            Task t2=travail.matrix[current.machine][current.t2];
+            for (int t=0;t<cp.size();t++){
+                if (cp.get(t).job==t1.job && cp.get(t).task==t1.task){
+                    i1=t;
+                }
+                if (cp.get(t).job==t2.job && cp.get(t).task==t2.task){
+                    i2=t;
+                }
+            }
+            for (int j=0;j<sTabou.length;j++){
+                for (int i=0;i<sTabou[j].length;i++){
+                    System.out.println("tabou des indices apres update " +j + ","+ i + " = " + sTabou[j][i]);                  
+                }
+            }
+            sTabou[i2][i1]=k+durreeTaboue;
+            //System.out.println(" le best vaut :" + travail.toSchedule().makespan());
+            if (last.toSchedule().makespan()<init.toSchedule().makespan()){
+                best=last;
+            }
+            travail=last;
+            LB = blocksOfCriticalPath4(travail);
+	    }
+    
+        return new Result(instance, best.toSchedule(), Result.ExitCause.Blocked);
         //throw new UnsupportedOperationException();
     }
 
     /** Returns a list of all blocks of the critical path. */
-    List<DescentSolver.Block> blocksOfCriticalPath(ResourceOrder order) {
-        //on cherche le schedule car on a besoin d'obtenir le chemin critique
-        Schedule s= order.toSchedule();
-        List<Task> listeT= s.criticalPath();
-
-        //on a besoin de stocker le tout dans une liste de blocks
-        List<DescentSolver.Block> listeB = new ArrayList<DescentSolver.Block>();
-
-        //on prend des entiers qui représentent les indices de la liste, pour construire les blocks
-        //on initialise a 0 et 1
-        int first, last;
-        first=0; last=1;
-        //on compte le nombre de taches dans le block
-        //on initialize a 1 car une tache seule est dans son propre block, même si elle n'est pas considérée comme un block
-        int compt=1;
-
-        //on itère tant que first pointe au dernier element de la listeT
-        while (first<listeT.size()-1){
-            if (listeT.get(first)==listeT.get(last)){
-                compt++;
-                first++;
-                last++;
-            } else {
-                if (compt>1){
-                    listeB.add(new DescentSolver.Block(s.pb.machine( listeT.get(first).job,listeT.get(first).task),last-compt, last));
-                    compt=1;
-                    first=last;
-                    last=first+1;
-                } else {
-                    compt=1;
-                    first=last;
-                    last=first+1;
+    List<Block> blocksOfCriticalPath4(ResourceOrder order) {
+        List<Task> criticalPath = order.toSchedule().criticalPath();
+        List<Block> listeB = new ArrayList<Block>();
+        Task current, next;
+        
+        for(int i = 0; i<criticalPath.size()-1; i++) {
+            current = criticalPath.get(i);
+            next = criticalPath.get(i+1);
+            
+            if(listeB.size() != 0 && (listeB.get(listeB.size()-1).machine) == order.instance.machine(current)) {
+                Block newBlock = new Block(order.instance.machine(current), listeB.get(listeB.size()-1).firstTask, taskIndex(order,current));
+                listeB.remove(listeB.size()-1);
+                listeB.add(newBlock);
+            }
+            else {
+                if(order.instance.machine(current)== order.instance.machine(next)) {
+                    listeB.add(new Block(order.instance.machine(current), taskIndex(order,current), taskIndex(order,next)));
                 }
-
             }
         }
-
+        current = criticalPath.get(criticalPath.size()-1);
         return listeB;
         //throw new UnsupportedOperationException();
     }
 
     /** For a given block, return the possible swaps for the Nowicki and Smutnicki neighborhood */
-    List<DescentSolver.Swap> neighbors(DescentSolver.Block block) {
+    List<Swap> neighbors3(Block block) {
         //on créé la liste de swaps à retourner
-        List<DescentSolver.Swap> listeS = new ArrayList<DescentSolver.Swap>();
+        List<Swap> listS = new ArrayList<Swap>();
         //on récup le nb de taches
-        int nb = block.lastTask-block.firstTask;
+        int nb = block.lastTask-block.firstTask+1;
         //on recup la machine
         int m=block.machine;
-        int i=0;
 
-        //part one -> swap the first elements two by two
-        while (i<nb-1){
-            listeS.add(new DescentSolver.Swap(m,i,i+1));
-            i+=2;
-        }
 
-        //part two -> swap with an offset of 1
-        i=1;
-        while (i<nb-1){
-            listeS.add(new DescentSolver.Swap(m,i,i+1));
-            i+=2;
-        }
-
-        return listeS;
+        //System.out.println(" block, t1 = "  + block.firstTask + ", t2 =" + block.lastTask);
+        
+        listS.add(new Swap(m, block.firstTask, block.firstTask+1));
+	if (nb>2){
+	    listS.add(new Swap(m,block.lastTask-1,block.lastTask));
+	}
+        /*System.out.println("voici la liste des swaps pour ce block");
+        for (int o=0;o<listeS.size();o++){
+            System.out.println("first : " +listeS.get(o).t1 + "," +listeS.get(o).t2);
+        }*/
+        return listS;
         //throw new UnsupportedOperationException();
+    }
+
+    static int taskIndex(ResourceOrder order, Task task) {
+        int index=0;
+        for(int i =0; i<order.instance.numJobs;i++) {
+            if(order.matrix[order.instance.machine(task)][i].equals(task)) {
+                index = i;
+                break;
+            }
+                
+        }
+        return (index);       
     }
 
 }
