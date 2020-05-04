@@ -110,7 +110,7 @@ public class EST_SPTGreedySolver implements Solver {
                 vectm[instance.machine(tache)]+=instance.duration(tache.job, tache.task);
                 //on la supprime des taches a réalisées (réalisables)
                 task.remove(tache);
-                lt.remove(tache);
+                //lt.remove(tache);
                 check[tache.job][tache.task]=1;
                 //vérifier quelles taches sont réalisables
                 //pas besoin je crois, il suffit d'ajouter dans task la tache suivante du job qu'on vient de traiter

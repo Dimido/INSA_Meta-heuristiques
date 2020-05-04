@@ -20,7 +20,7 @@ public class BestKnownResult {
     static String[] instances;
     static {
         bests = new HashMap<>();
-        bests.put("aaa1", 10);
+        bests.put("aaa1", 11);
         bests.put("abz5", 1234);
         bests.put("abz6", 943);
         bests.put("abz7", 656);
