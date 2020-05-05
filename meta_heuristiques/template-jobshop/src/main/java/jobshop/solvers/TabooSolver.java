@@ -99,7 +99,7 @@ public class TabooSolver implements Solver{
         //resourceorder pour les évaluations
         ResourceOrder travail = new ResourceOrder(res.schedule);
         //resourceorder de sauvegarde
-        ResourceOrder init = travail.copy();
+        //ResourceOrder init = travail.copy();
         //solution meilleure
         ResourceOrder best = travail.copy();
         //on cree la liste des blocks

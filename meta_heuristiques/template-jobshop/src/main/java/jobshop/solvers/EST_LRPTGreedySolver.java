@@ -105,7 +105,7 @@ public class EST_LRPTGreedySolver implements Solver {
                 }
                 //System.out.println("nouvell tache retenue job "+ tache.job + " task " + tache.task);
                 //on update le temps restant du job
-                durees[b]-=c;
+                durees[tache.job]-=c;
                 //update t avec la duree de la tache
                 //t+=c;
                 //on ajoute la tache dans la liste des taches gérees et dans le jn
