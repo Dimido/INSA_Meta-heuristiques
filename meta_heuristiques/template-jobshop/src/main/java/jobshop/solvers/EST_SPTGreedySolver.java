@@ -167,7 +167,7 @@ public class EST_SPTGreedySolver implements Solver {
                     }
                 }
                 //System.out.println(s);
-                System.out.println("tache retenue job "+ tache.job + " task " + tache.task);
+                //System.out.println("tache retenue job "+ tache.job + " task " + tache.task);
                 //on update le temps de la tache
                 //durees[tache.job][tache.task]=9999;
                 //update t avec la duree de la tache
