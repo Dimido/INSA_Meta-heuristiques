@@ -1,6 +1,6 @@
 package jobshop.solvers;
 
-import jdk.internal.loader.Resource;
+//import jdk.internal.loader.Resource;
 import jobshop.Instance;
 import jobshop.encodings.JobNumbers;
 import jobshop.Result;
