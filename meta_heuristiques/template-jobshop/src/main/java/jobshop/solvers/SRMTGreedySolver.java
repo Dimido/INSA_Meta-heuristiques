@@ -14,6 +14,7 @@ import java.util.List;
 
 public class SRMTGreedySolver implements Solver {
 
+
     @Override
     public Result solve(Instance instance, long deadline) {
 

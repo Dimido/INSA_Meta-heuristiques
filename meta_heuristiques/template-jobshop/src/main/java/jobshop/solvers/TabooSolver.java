@@ -80,12 +80,27 @@ public class TabooSolver implements Solver{
             //throw new UnsupportedOperationException();
         }
     }
-
+    private Solver sol;
+    public TabooSolver(String s){
+        if (s.equals("SPT")){
+            this.sol = new SPTGreedySolver();
+        } else if (s.equals("LRPT")){
+            this.sol = new LRPTgreedySolver();
+        } else if (s.equals("ESTSPT")){
+            this.sol = new EST_SPTGreedySolver();
+        } else if (s.equals("ESTLRPT")){
+            this.sol = new EST_LRPTGreedySolver();
+        } else if (s.equals("SRMT")){
+            this.sol = new SRMTGreedySolver();
+        } else {
+            this.sol = new LRPTgreedySolver();
+        }
+    }
 
     @Override
     public Result solve(Instance instance, long deadline) {
         //on recup le schedule
-        Solver sol= new LRPTgreedySolver();
+        Solver sol= this.sol;
         
         Result res = sol.solve(instance, deadline);
         List<Task> cp = res.schedule.criticalPath();

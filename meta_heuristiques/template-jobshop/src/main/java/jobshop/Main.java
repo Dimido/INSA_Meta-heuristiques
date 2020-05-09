@@ -23,7 +23,6 @@ public class Main {
         solvers = new HashMap<>();
         solvers.put("basic", new BasicSolver());
         solvers.put("random", new RandomSolver());
-        solvers.put("descent", new DescentSolver());
         solvers.put("SPTro", new SPTGreedySolver());
         solvers.put("SPTjn", new SPTgreedySolver());
         solvers.put("SRMT", new SRMTGreedySolver());
@@ -31,8 +30,21 @@ public class Main {
         solvers.put("LRPTro", new LRPTgreedySolver());
         solvers.put("ESTLRPT", new EST_LRPTGreedySolver());
         solvers.put("ESTSPT", new EST_SPTGreedySolver());
-        solvers.put("taboo", new TabooSolver());
-        solvers.put("recuit", new RecuitSimule());
+        solvers.put("descentSPT", new DescentSolver("SPT"));
+        solvers.put("descentLRPT", new DescentSolver("LRPT"));
+        solvers.put("descentESTSPT", new DescentSolver("ESTSPT"));
+        solvers.put("descentESTLRPT", new DescentSolver("ESTLRPT"));
+        solvers.put("descentSRMT", new DescentSolver("SRMT"));
+        solvers.put("tabooSPT", new TabooSolver("SPT"));
+        solvers.put("tabooLRPT", new TabooSolver("LRPT"));
+        solvers.put("tabooESTSPT", new TabooSolver("ESTSPT"));
+        solvers.put("tabooESTLRPT", new TabooSolver("ESTLRPT"));
+        solvers.put("tabooSRMT", new TabooSolver("SRMT"));
+        solvers.put("recuitSPT", new RecuitSimule("SPT"));
+        solvers.put("recuitLRPT", new RecuitSimule("LRPT"));
+        solvers.put("recuitESTSPT", new RecuitSimule("ESTSPT"));
+        solvers.put("recuitESTLRPT", new RecuitSimule("ESTLRPT"));
+        solvers.put("recuitSRMT", new RecuitSimule("SRMT"));
 
         // add new solvers here
     }
