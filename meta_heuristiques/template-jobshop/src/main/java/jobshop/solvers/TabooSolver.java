@@ -108,7 +108,7 @@ public class TabooSolver implements Solver{
         //max iter
         int maxIter = 100;
         //choix de la duree taboue
-        int durreeTaboue = 100;
+        int durreeTaboue = 20;
         //meilleur temps
         int m= res.schedule.makespan();
         //System.out.println("au début le best vaut :" + m);
