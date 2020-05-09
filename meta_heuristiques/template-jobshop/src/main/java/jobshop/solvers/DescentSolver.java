@@ -92,7 +92,7 @@ public class DescentSolver implements Solver {
 
 
         //on recup le schedule
-        Solver sol = new EST_LRPTGreedySolver();
+        Solver sol = new SRMTGreedySolver();
         Result res = sol.solve(instance, deadline);
         //Schedule sinit = res.schedule;
 

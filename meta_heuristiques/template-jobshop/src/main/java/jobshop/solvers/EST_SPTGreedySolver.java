@@ -13,6 +13,65 @@ import java.util.List;
 
 public class EST_SPTGreedySolver implements Solver {
 
+    /*@Override
+    public Result solve(Instance instance, long deadline){
+
+
+        ResourceOrder RO = new ResourceOrder(instance);
+        List<Task> task= new ArrayList<Task>();
+        for (int a=0;a<instance.numJobs;a++){
+            task.add(new Task(a,0));
+        }
+        int[] vectjob = new int[instance.numJobs];
+        for (int r=0;r<vectjob.length;r++){
+            vectjob[r]=0;
+        }
+        int[] vectm = new int[instance.numMachines];
+        for (int t=0;t<vectm.length;t++){
+            vectm[t]=0;
+        }
+        int c=0;
+        
+        /////////////////////////////////////////////
+
+
+        while(c<(instance.numJobs*instance.numTasks)){
+            int minst=9999;
+            Task tache=null;
+            int machine = 0;
+            for (Task t: task){
+                int est = max(vectjob[t.job],vectm[instance.machine(t)]);
+                if(est<=minst){
+                    minst=est;
+                }
+            }
+            
+            int min=9999;
+            tache=null;
+            for (Task t: task){
+                int est = max(vectjob[t.job], vectm[instance.machine(t)]);
+                if(est==minst && instance.duration(t.job,t.task)<min){
+                    min=instance.duration(t.job,t.task);
+                    tache=t;
+                    machine= instance.machine(tache);
+                }
+            }
+
+            
+            c++;
+            RO.matrix[RO.nextFreeSlot[machine]][tache.job]=tache;
+            RO.nextFreeSlot[machine]+=1;
+            vectjob[tache.job]+=instance.duration(tache.job,tache.task);
+            vectm[machine]+=instance.duration(tache.job,tache.task);
+            task.remove(tache);
+            if(tache.task != instance.numTasks-1) {
+                task.add(new Task(tache.job, tache.task + 1));
+            } 
+        }
+        System.out.print(RO.toString());
+        return new Result(instance, RO.toSchedule(), Result.ExitCause.Blocked);
+    }*/
+
     @Override
     public Result solve(Instance instance, long deadline) {
 
@@ -23,19 +82,23 @@ public class EST_SPTGreedySolver implements Solver {
         //ArrayList<Task> task_r=new ArrayList<Task>();
         //a la place de task_r, un indice qui compte le nombre de taches gerees
         int compteur = 0;
+        //minimum pour spt
+        int min=0;
+        //minimum pour est
+        int minst=0;
         for(int j=0;j<instance.numJobs;j++){
             task.add(new Task(j,0));
             //System.out.println("nouvell tache au job "+ j);
         }
         
         //définir les durrées des taches
-        int[][] durees = new int[instance.numJobs][instance.numTasks];
-        for(int j=0;j<instance.numJobs;j++){
-            for (int i=0;i<instance.numTasks;i++){
-                //on ajoute la durée de la tache
-                durees[j][i]=instance.duration(j,i);
-            }
-        }
+        //int[][] durees = new int[instance.numJobs][instance.numTasks];
+        //for(int j=0;j<instance.numJobs;j++){
+        //    for (int i=0;i<instance.numTasks;i++){
+        //        //on ajoute la durée de la tache
+        //        durees[j][i]=instance.duration(j,i);
+        //    }
+        //}
 
         //vecteurs des temps des jobs
         int[] vectjob = new int[instance.numJobs];
@@ -48,16 +111,16 @@ public class EST_SPTGreedySolver implements Solver {
             vectm[d]=0;
         }  
         //tableau pour check si on a déja traité la tache
-        /*int[][] check = new int[instance.numJobs][instance.numTasks];
-        for(int e=0;e<instance.numJobs;e++){
-            for(int f=0;f<instance.numTasks;f++){
-                check[e][f]=0;
-            }
-        } */
+        //int[][] check = new int[instance.numJobs][instance.numTasks];
+        //for(int e=0;e<instance.numJobs;e++){
+        //    for(int f=0;f<instance.numTasks;f++){
+        //        check[e][f]=0;
+        //    }
+        //} 
 
-        while(compteur<(instance.numJobs*instance.numTasks) /*task_r.size()==(instance.numJobs*instance.numTasks))*/){
+        while(compteur<(instance.numJobs*instance.numTasks)){ //task_r.size()==(instance.numJobs*instance.numTasks))
             //on cherche le min de start time et on update les vecteurs
-            int minst=9999;
+            minst=9999;
             for (Task t:task){
                 int starttime = max(vectjob[t.job], vectm[instance.machine(t)]);
                 //System.out.println("start time de la tache : job "+ t.job + " task " + t.task + " = "+ starttime);
@@ -70,21 +133,21 @@ public class EST_SPTGreedySolver implements Solver {
             //System.out.println("starttime minimal = "+ minst);
             //on a le start time min
             //on construit la liste des taches qui vont etre évaluées
-            /*List<Task> lt = new ArrayList<Task>();
-            for (Task t:task){
-                int start = max(vectjob[t.job], vectm[instance.machine(t)]);
-                if(start==minst){
-                    lt.add(t);
+            //List<Task> lt = new ArrayList<Task>();
+            //for (Task t:task){
+            //    int start = max(vectjob[t.job], vectm[instance.machine(t)]);
+            //    if(start==minst){
+            //        lt.add(t);
                     //System.out.println("noouvelle tache ajoutee job "+ t.job + " tach "+ t.task);
-                }
-            }*/
+            //    }
+            //}
             //while(lt.size()!=0){
                 //System.out.println("taille de la liste : "+ lt.size());
-                /*for (Task l:lt){
-                    System.out.println(" job "+ l.job + "tache " + l.task);
-                }*/
+                //for (Task l:lt){
+                //    System.out.println(" job "+ l.job + "tache " + l.task);
+                //}
                 //le maximum pour LRPT
-                int min=9999;
+                min=9999;
                 //la tache équivalente
                 Task tache = null, aux=null;
                 //int pour la durée de la tache récupéree
@@ -93,21 +156,20 @@ public class EST_SPTGreedySolver implements Solver {
                 int machine =0;
                 //String s="taches dans lt: ";
                 for (Task t: task){//lt){
-                    aux=t; 
                     int start = max(vectjob[t.job], vectm[instance.machine(t)]);
                     //s+="job "+ Integer.toString(t.job) + " task " + Integer.toString(t.task);
-                    if(start<=minst && durees[aux.job][aux.task]<min){
-                        tache=aux;
-                        min=durees[tache.job][tache.task];
+                    if(start==minst && instance.duration(t.job, t.task)<min){
+                        tache=t;
+                        min=instance.duration(t.job, t.task);
                         //c=instance.duration(tache.job, tache.task);
                         machine=instance.machine(tache.job,tache.task);
                         //System.out.println("c = " + c);
                     }
                 }
                 //System.out.println(s);
-                //System.out.println("nouvelle tache retenue job "+ tache.job + " task " + tache.task);
+                System.out.println("tache retenue job "+ tache.job + " task " + tache.task);
                 //on update le temps de la tache
-                durees[tache.job][tache.task]=9999;
+                //durees[tache.job][tache.task]=9999;
                 //update t avec la duree de la tache
                 //t+=c;
                 //on ajoute la tache dans la liste des taches gérees et dans le jn
@@ -119,6 +181,20 @@ public class EST_SPTGreedySolver implements Solver {
                 vectm[instance.machine(tache)]+=instance.duration(tache.job, tache.task);
                 //on la supprime des taches a réalisées (réalisables)
                 task.remove(tache);
+                //for(int y =0;y<instance.numJobs;y++){
+                //    if (y==tache.job){
+                //        System.out.println("update de vectjob pour job "+ y + " val ="+ vectjob[y]);
+                //    } else {
+                //        System.out.println("vectjob pour job "+ y + " val ="+ vectjob[y]);
+                //    }
+                //}
+                //for(int y =0;y<instance.numMachines;y++){
+                //    if(y==instance.machine(tache)){
+                //        System.out.println("update de vectm pour machine "+ y + " val ="+ vectm[y]);
+                //    }else{
+                //        System.out.println("vectm pour machine "+ y + " val ="+ vectm[y]);
+                //    }
+                //}
                 //lt.remove(tache);
                 //check[tache.job][tache.task]=1;
                 //vérifier quelles taches sont réalisables
@@ -140,6 +216,13 @@ public class EST_SPTGreedySolver implements Solver {
             return j;
         }else{
             return i;
+        }
+    }
+    private int min(int i, int j) {
+        if (i<=j){
+            return i;
+        }else{
+            return j;
         }
     }
 }

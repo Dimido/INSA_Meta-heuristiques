@@ -85,14 +85,15 @@ public class TabooSolver implements Solver{
     @Override
     public Result solve(Instance instance, long deadline) {
         //on recup le schedule
-        Solver sol = new EST_LRPTGreedySolver();
+        Solver sol= new LRPTgreedySolver();
+        
         Result res = sol.solve(instance, deadline);
         List<Task> cp = res.schedule.criticalPath();
         
         //max iter
-        int maxIter = 20000;
+        int maxIter = 100;
         //choix de la duree taboue
-        int durreeTaboue = 20;
+        int durreeTaboue = 100;
         //meilleur temps
         int m= res.schedule.makespan();
         //System.out.println("au début le best vaut :" + m);
@@ -121,7 +122,7 @@ public class TabooSolver implements Solver{
 
         
 
-        while ( (k<maxIter) /*&& (deadline - System.currentTimeMillis() > 1)*/){
+        while ( (k<maxIter) && (deadline - System.currentTimeMillis() > 1)){
             k++;
             //System.out.println("taille de lb : " +LB.size());
             Swap current=null;
