@@ -128,7 +128,7 @@ public class DescentSolver implements Solver {
         boolean trouve = false;
         
 
-        while ((!trouve) && (deadline - System.currentTimeMillis() > 1)){
+        while ((!trouve) /*&& (deadline - System.currentTimeMillis() > 1)*/){
             trouve=true;
 		//System.out.println("taille de lb : " +LB.size());
 		for (Block b : LB){

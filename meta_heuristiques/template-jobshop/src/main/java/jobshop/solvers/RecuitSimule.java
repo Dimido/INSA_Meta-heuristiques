@@ -133,12 +133,13 @@ public class RecuitSimule implements Solver {
         //temperature de départ
         double temp = 100.0;
         //coefficient pour réguler la température
-        double k = 0.48;
+        double k = 0.99;
         //calcul de la difference deltaf
         double delta = 0.0;
         //random
         Random rand = new Random();
-
+        //compter les iterations et changer la température
+        int change = 0,x=30;
 
         //on cree la liste des blocks
         List<Block> LB = blocksOfCriticalPath3(travail);
@@ -147,7 +148,7 @@ public class RecuitSimule implements Solver {
         List<Swap> voisins = new ArrayList<Swap>();
 
         while (temp>0.5){
-            
+            change++;
             //System.out.println("taille de lb : " +LB.size());
             for (Block b : LB){
                 //System.out.println("taille de b : " +(b.lastTask - b.firstTask));
@@ -165,7 +166,10 @@ public class RecuitSimule implements Solver {
             if (accept(delta,temp)){
                 init=aux;
             }
-            temp = k*temp;
+            if ((change % x)==0){
+                temp = k*temp;
+                //System.out.println("changement");
+            }
             travail=init;
             LB = blocksOfCriticalPath3(travail);
             voisins.clear();
